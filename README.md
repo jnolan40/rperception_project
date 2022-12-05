@@ -3,7 +3,7 @@ Code repository for final project for MEEN 689 Robotic Perception
 
 ## Problem
 
-In an empty world, we have a chair that has a linear oscillating motion. This chair is equipped with an Inertial Measurement Unit and is being observed by a camera.
+In an empty world, we have a chair that has a linear oscillating motion. This chair is equipped with and Inertial Measurement Unit. and is being observed by a camera.
 
 ## Objective
 
@@ -15,7 +15,7 @@ To write a Kalman filter to combine the data from the camera and the IMU to esti
 
 #### Prediction Equation
 
-$$ X_k =\begin{bmatrix} 1 & dt & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} x_{k+1}\\ \dot x_{k+1} \\ \ddot x_{k+1} \end{bmatrix} + \omega_k $$
+$$ X_k =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} x_{k+1}\cr \dot x_{k+1} \cr \ddot x_{k+1} \end{bmatrix} + \omega_k $$
 
 $$\omega = N(0, Q) $$
 
@@ -25,7 +25,7 @@ $$ Q = \begin{bmatrix} 25dt^4 & 50dt^3 & 0 \cr 50dt^3 & 100dt^2 & 0 \cr 0 & 0 & 
 
 #### Priori Covariance
 
-$$ P_0 =\begin{bmatrix} 1 & dt & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 0 \end{bmatrix} * \begin{bmatrix} X_{k+1} \\ \dot X_{k+1} \\ \ddot X_{k+1} \end{bmatrix} + \omega_k$$
+$$ P_0 =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 1 & 0 \end{bmatrix} * \begin{bmatrix} X_{k+1} \cr \dot X_{k+1} \cr \ddot X_{k+1} \end{bmatrix} + \omega_k$$
 
 #### Measurement: IMU
 From the IMU we are accepting linear acceleration to get a position estimate by using a normal Kalman Filter. This measurement needs to be updated in the Kalman Filter, and is shown by the following measurement update equation.
@@ -35,7 +35,7 @@ $$ Z_{IMU} = \begin{bmatrix} 0 & 0 & 1\end{bmatrix} \begin{bmatrix} x_{k+1} \cr 
 where $V_{IMU}$ is the sensor noise with covariance $$R_{IMU} = 0.25$$
 
 #### Measurement: Camera
-We have YOLOv5 running on the camera output to recognize the chair and give us a bounding box. Based on this bounding box, we are identifying the position of the chair by finding the centre and the deviation from its last state to measure it's displacement. This gives us one input for the chair's position. Since we are identifying position from angular deviation, a non-linear function is used, and hence a Extended Kalman Filter is implemented here.
+We have YOLOv5 running on the camera output to recognize the chair ang give us a bounding box. Based on this bounding box, we are identifying the position of the chair by finding the centre and the deviation from its last state to measure it's displacement. This gives us one input for the chair's position. Since we are identifying position from angular deviation, a non-linear function is used, and hence a Extended Kalman Filter is implemented here.
 
 We are assuming that the chair has a linear motion. Based on this, it's displacement from the optical center of the camera can be given by;
 
