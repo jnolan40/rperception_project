@@ -16,7 +16,7 @@ From the IMU we are accepting linear acceleration to get a position estimate by 
 
 We are leaning on the camera as it gives a direct measurement for position, and has no elements for distortation. We have therefore assigned a higher confidence in its measurements
 
-<img title="Control Flow" src="Algorithm flowchart example.svg">
+<img title="Control Flow" src="control_flowchart.svg">
 
 
 ## Results
