@@ -14,5 +14,10 @@ We have YOLOv5 running on the camera output to recognize the chair ang give us a
 
 From the IMU we are accepting linear acceleration to get a position estimate by using a normal Kalman Filter.
 
+We are leaning on the camera as it gives a direct measurement for position, and has no elements for distortation. We have therefore assigned a higher confidence in its measurements
+
+<img title="Control Flow" src="Algorithm flowchart example.svg">
+
+
 ## Results
 
