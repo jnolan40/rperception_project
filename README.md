@@ -3,7 +3,7 @@ Code repository for final project for MEEN 689 Robotic Perception
 
 ## Problem
 
-In an empty world, we have a chair that has a linear oscillating motion. This chair is equipped with and Inertial Measurement Unit. and is being observed by a camera.
+In an empty world, we have a chair that has a linear oscillating motion. This chair is equipped with an Inertial Measurement Unit and is being observed by a camera.
 
 ## Objective
 
@@ -17,7 +17,7 @@ To write a Kalman filter to combine the data from the camera and the IMU to esti
 
 $$ X_k =\begin{bmatrix} 1 & dt & 0 \\ 0 & 1 & 0 \\ 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} x_{k+1}\\ \dot x_{k+1} \\ \ddot x_{k+1} \end{bmatrix} + \omega_k $$
 
-$$\omega = \Nu(0, Q) $$
+$$\omega = N(0, Q) $$
 
 #### Prediction Covariance
 
@@ -35,15 +35,15 @@ $$ Z_{IMU} = \begin{bmatrix} 0 & 0 & 1\end{bmatrix} \begin{bmatrix} x_{k+1} \cr 
 where $V_{IMU}$ is the sensor noise with covariance $$R_{IMU} = 0.25$$
 
 #### Measurement: Camera
-We have YOLOv5 running on the camera output to recognize the chair ang give us a bounding box. Based on this bounding box, we are identifying the position of the chair by finding the centre and the deviation from its last state to measure it's displacement. This gives us one input for the chair's position. Since we are identifying position from angular deviation, a non-linear function is used, and hence a Extended Kalman Filter is implemented here.
+We have YOLOv5 running on the camera output to recognize the chair and give us a bounding box. Based on this bounding box, we are identifying the position of the chair by finding the centre and the deviation from its last state to measure it's displacement. This gives us one input for the chair's position. Since we are identifying position from angular deviation, a non-linear function is used, and hence a Extended Kalman Filter is implemented here.
 
 We are assuming that the chair has a linear motion. Based on this, it's displacement from the optical center of the camera can be given by;
 
 $$ u = \frac{\tan^{-1} \begin{pmatrix}\frac{x}{d}\end{pmatrix}}{\alpha}   $$
 
-As we have no other input from the camera, the obtained Jacobian $\Eta$ is given by,
+As we have no other input from the camera, the obtained Jacobian H is given by,
 
-$$ \Eta = \begin{bmatrix} \frac{d}{\alpha(x^2 + d^2)} & 0 & 0 \end{bmatrix} $$
+$$ H = \begin{bmatrix} \frac{d}{\alpha(x^2 + d^2)} & 0 & 0 \end{bmatrix} $$
 
 with a covariance of $ R_{Cam} = 0.1 $
 
