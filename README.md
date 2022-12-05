@@ -1,5 +1,5 @@
 # MEEN 689 - Robotic Perception Project
-Code repository for final project for MEEN 689 Robotic Perception
+Term project repository for MEEN 689.
 
 ## Problem
 
