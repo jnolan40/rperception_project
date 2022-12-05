@@ -15,7 +15,7 @@ To write a Kalman filter to combine the data from the camera and the IMU to esti
 
 #### Prediction Equation
 
-$$ X_k =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} x_{k+1}\cr \dot x_{k+1} \cr \ddot x_{k+1} \end{bmatrix} + \omega_k $$
+$$ X_k =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_{k+1}\cr \dot x_{k+1} \cr \ddot x_{k+1} \end{bmatrix} + \omega_k $$
 
 $$\omega = N(0, Q) $$
 
