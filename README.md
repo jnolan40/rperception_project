@@ -25,7 +25,7 @@ $$ Q = \begin{bmatrix} 25dt^4 & 50dt^3 & 0 \cr 50dt^3 & 100dt^2 & 0 \cr 0 & 0 & 
 
 #### Priori Covariance
 
-$$ P_0 =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 1 & 0 \end{bmatrix} \begin{bmatrix} X_{k+1} \cr \dot X_{k+1} \cr \ddot X_{k+1} \end{bmatrix} + \omega_k$$
+$$ P_0 =\begin{bmatrix} 1 & dt & 0 \cr 0 & 1 & 0 \cr 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} X_{k+1} \cr \dot X_{k+1} \cr \ddot X_{k+1} \end{bmatrix} + \omega_k$$
 
 #### Measurement: IMU
 From the IMU we are accepting linear acceleration to get a position estimate by using a normal Kalman Filter. This measurement needs to be updated in the Kalman Filter, and is shown by the following measurement update equation.
